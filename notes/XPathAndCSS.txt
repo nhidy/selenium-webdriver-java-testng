@@ -1,0 +1,38 @@
+HTML Element
+<tagname attribute="value"...>
+
+Relative XPath
+//tagname[@attribute='value']
+
+Nên lấy cái attribute nào trong case 1 HTML element có rất nhiều attribute?
+1. Unique: Giá trị của attribute phải là duy nhất (ko bị trùng)
+2. Meaning: Giá trị của attribute có liên quan đến field đó (Có id/class/name nhugư phải có nghĩa)
+3. Attribute: id/class/name (Ưu tiên 3 loại này vì nó chạy nhanh hơn)
+4. Attribute non (id/class/name): dùng bất kì attribute nào mà duy nhất (1) và có ý nghĩa (2)
+
+Các cách viết XPath cho element này:
+//input[@class='email']
+//input[@id='Email']
+//input[@name='Email']
+
+//input[@data-val-email='Wrong email']
+//input[@data-val-required='Please enter your email']
+
+Câu hỏi 1: Các element này có các attribute là id/class/name không?
+Câu hỏi 2: Các giá trị của id/class/name này có nghĩa không (ý nghĩa)?
+	Ý nghĩa: giá trị này có đồng nghãi vs tên element đang cần tìm
+Câu hỏi 3: Thỏa 2 điều kiện 1 và 2 thì có trùng lặp vs 1 element khác không?
+
+
+
+@ luôn đi vs attribute
+ĐÚNG: @id @class @name @title
+Không viết hoa các attribute:
+SAI: @ID @Class @Name
+SAI: id() class()
+
+những hàm của XPath không đi với @:
+ĐÚNG: text() contain() string() concat() starts-with()..
+SAI: @text() @string()
+
+
