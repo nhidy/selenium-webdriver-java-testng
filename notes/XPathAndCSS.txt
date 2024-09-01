@@ -1,7 +1,19 @@
+03 Java Hybrid Framework
+04 Maven Hybrid Framework
+05 Gradle Hybrid Framework
+06 Cucumber
+07 Jenkins
+
+https://gearvn.com/products/laptop-lenovo-v14-g4-iru-83a000bhvn
+https://www.youtube.com/watch?v=mCJY57hxbzM
+https://www.youtube.com/watch?v=3ik_1VhJpPE
+
+------------- =/= -------------
+
 HTML Element
 <tagname attribute="value"...>
 
-Relative XPath
+------------- Relative XPath -------------
 //tagname[@attribute='value']
 
 Nên lấy cái attribute nào trong case 1 HTML element có rất nhiều attribute?
@@ -23,17 +35,150 @@ Câu hỏi 2: Các giá trị của id/class/name này có nghĩa không (ý ngh
 	Ý nghĩa: giá trị này có đồng nghãi vs tên element đang cần tìm
 Câu hỏi 3: Thỏa 2 điều kiện 1 và 2 thì có trùng lặp vs 1 element khác không?
 
+------------- XPath Technical 01 -------------
+Nếu như 1 element có đầy đủ các thuộc tính thì cứ dùng kĩ thuật này
+Tagname & Attribute & Value
+	//tagname[@attribute='value']
+		//input[@class='email']
+		//input[@id='Email']
+		//input[@name='Email']
+		//input[@title='Email Address']
+
+XPath Axes
+//label[text()='Điểm khởi hành']/following-sibling::div/input
+
+------------- XPath Technical 02 -------------
+Parent node (Lấy từ đời cha để tìm ra element là duy nhất)
+	1. Khi một element không thể xác định được nó là duy nhất bởi các attribute/value của nó
+	2. Khi một element không có attribute nào hết
+	//parent-tagname[@attribute='value']//child-tagname[@attribute='value']
+		1. //div[@class='footer']//a[@title='My Account']
+		2. //div[@class='footer-container']//a[@title='My Account']
+Parent node (Lấy từ đời cha trở lên)
+	//li[@class='success-msg']//span
+
+------------- Function vs Attribute -------------
+function()
+	Sử dụng hàm thì không được dùng @ phía trước
+	Dùng () ở sau tên hàm
+	những hàm của XPath không đi với @:
+	ĐÚNG: text() contains() string() concat() starts-with() ...
+	SAI: @text() @string()
+
+attribute
+	Sử dụng attribute (thuộc tính) dùng @ phía trước
+	Không dùng () sau tên thuộc tính
+	@ luôn đi vs attribute
+	ĐÚNG: @id @class @name @title @data-id ...
+	Không viết hoa các attribute:
+	SAI: @ID @Class @Name
+	SAI: id() class()
+
+------------- XPath Technical 03 -------------
+Lấy tuyệt đối (=) khi muốn lấy hết toàn bộ
+	text()= / string()= :chứa giá trị tuyệt đối trong chuỗi
+		//div[@class='footer-container']//a[(text()='My Account')]
+		=> Chạy nhanh hơn vì nó quét phạm vi hẹp
+	@attribute=: chứa giá trị tuyệt dối trong attribute
+		//div[@class='footer-container']//a[(@title='My Account')]
+Lấy tương đối (,) khi muốn lấy 1 phần giá trị
+	contains() / starts-with() với text hoặc attribute
+		=> Chạy chậm hơn vì nó quét phạm vi rộng hơn
+		//div[@class='footer-container']//a[contains(text(),'My Account')]
+		//div[@class='footer-container']//a[contains(@title,'My Account')]
+		//div[@class='footer']//a[contains(@href,'account')]
+	Lấy tương đối (tốc độ quét chậm hơn)
+
+------------- XPath Technical 04 -------------
+starts-with(): text() || @attribute
+	1: //div[@class='footer-container']//a[starts-with(text(),'My Account')]
+	2: //div[@class='flipBannerWrap']//iframe[starts-with(@id,'viz_iframe')]
+	3: //input[starts-with(@data-spm-anchor-id,'a2o4n.login_signup')]
+ends-with(): XPath không support
+Css vẫn support: $=
+
+------------- XPath Technical 05 -------------
+khi automation test ở level là Functional UI (giả lập hành vi của End user) thì thao tác với text rất nhiều
+Khi làm việc với text có 1 số loại:
+	text()='...'
+	contains[text(),'...']
+	contains[.,'...']
+	contains[string(),'...']
+	concat()
+
+https://automationfc.github.io/basic-form/
+	
+Nested text (text lồng nhau) - đều nằm trong cùng 1 thẻ cha - nhưng các text sẽ được phân chia ra theo từng cấp
+Nested text (text lồng nhau đều nằm trong cùng 1 thẻ)
+text()=
+	text nằm ở trên cùng hàng với chính node (tagname) đó - ko nằm trong child node - không phải dạng nested text
+	text có thể nằm index ở đầu/giữa/cuối đều lấy được (so với các thẻ con khác)
+	lấy text tuyệt đối => không có khoảng trắng/xuống dòng/tab ở đầu hoặc cuối chuỗi
+
+/: là đi từng node
+//: không quan tâm node
+
+contains(text(),''):
+	Text nó nằm ỏ trên chính node chứa nó
+	Dạng nested text nhưng text phải nằm ở index đầu tiên
+	Nếu text nằm ở index giữa hoặc cuối thì không lấy được
+	Nếu text nằm trực tiếp trong child node thì không lấy được
+	text này có khoảng trắng/xuống dòng/tab ở đầu hoặc cuối text vẫn work được (tương đối)
+	Không dùng contains(text()='') mà dùng contains(text(),'')
+	
+contains(.,'..'):
+	Text nó nằm ở trên chính node đó - hoặc nằm trong child node ở bất kì vị trí nào - hoặc nested text ở bất kì vị trí nào
+	Text này có khoảng trắng/xuống dòng/tab ở đầu hoặc cuối chuỗi vẫn work được
+	Dùng contains(.,'..') không dùng contains(.='..')
+	
+contains(string(),'..'):
+	Text nó nằm ở trên chính node đó - hoặc nằm trong child node ở bất kì vị trí nào - hoặc nested text cũng work
+	Text này có khoảng trắng/xuống dòng/tab ở đầu hoặc cuối chuỗi vẫn work được
+	Dùng contains(string(),'..') không dùng contains(string()='..')
+	
+concat():
+	Text vừa có chứa dấu ký tự nháy đơn - vừa chứa nháy đôi
+	//span[text()=concat('Hello "John", What's happened?')]
+
+------------- XPath Technical 06 -------------
+AND (tuyệt đối) vs OR (tương đối)
+	C = A OR B
+		//input[@type='email' or @id='email']
+	C = A AND B
+		//input[@type='email' and @id='email']
+
+1 trong 3 mà sai => sẽ không tìm thấy
+	//input[@type='email' and @id='email' and @title='Email Address']
+
+(1 trong 3) hoặc (2 trong 3) điều kiện mà sai => Vẫn tìm được ít nhất 1
+	//input[@type='email' or @id='email' or @title='Email Address']
+
+and (kết quả trả về tuyệt đối - cả 2 đều đúng
+	//tag[@actribute and @attribute/text()]
+	//*[@id='email' and @type='email']
+
+or (kết quả trả về tướng đối - 1 trong 2 đúng)
+	//tag[@actribute or @attribute/text()]
+	//*[@id='email' or @type='email']
+
+not (phủ định lại điều kiện)
+	not(điều kiện đúng) = sai
+	not(điều kiện sai) = đúng
+	//div[not(@style='display:none;)]/div[@class='raDiv']
+
+------------- XPath Technical 07 -------------
+inside parent
+	khi các element ngang hàng nhau cùng nằm trong 1 thẻ cha
+	
 
 
-@ luôn đi vs attribute
-ĐÚNG: @id @class @name @title
-Không viết hoa các attribute:
-SAI: @ID @Class @Name
-SAI: id() class()
 
-những hàm của XPath không đi với @:
-ĐÚNG: text() contain() string() concat() starts-with()..
-SAI: @text() @string()
+
+
+
+
+
+
 
 
 Adding

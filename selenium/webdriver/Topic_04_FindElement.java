@@ -8,16 +8,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_00_Template {
+public class Topic_04_FindElement {
     WebDriver driver;
-    String projectPath = System.getProperty("user.dir");
-    String osName = System.getProperty("os.name");
 
     @BeforeClass
     public void beforeClass () {
-        driver = new FirefoxDriver();
         driver = new ChromeDriver();
-        driver = new EdgeDriver();
         driver.get("");
     }
 
