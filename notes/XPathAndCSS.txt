@@ -169,16 +169,5 @@ not (phủ định lại điều kiện)
 ------------- XPath Technical 07 -------------
 inside parent
 	khi các element ngang hàng nhau cùng nằm trong 1 thẻ cha
-	
 
-
-
-
-
-
-
-
-
-
-
-Adding
+setTimeout(() => {debugger;}, 3000);
