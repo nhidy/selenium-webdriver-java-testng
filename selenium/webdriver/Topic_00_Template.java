@@ -8,6 +8,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class Topic_00_Template {
     WebDriver driver;
     String projectPath = System.getProperty("user.dir");
@@ -37,6 +39,8 @@ public class Topic_00_Template {
         driver = new FirefoxDriver();
         driver = new ChromeDriver();
         driver = new EdgeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.get("");
     }
 
