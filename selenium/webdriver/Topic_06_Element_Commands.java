@@ -202,6 +202,55 @@ public class Topic_06_Element_Commands {
 
     @Test
     public void TC_04_Register_Function_At_MailChimp() {
+        driver.get("https://login.mailchimp.com/signup/");
+        WebElement email, password, signUp;
+        email = driver.findElement(By.cssSelector("input#email"));
+        password = driver.findElement(By.cssSelector("input#new_password"));
+        signUp = driver.findElement(By.cssSelector("button#create-account-enabled"));
+        // Case 1: 6 conditions invalid
+        email.sendKeys("autotest@gmail.com");
+        password.sendKeys("");
+        signUp.click();
+        // Not completed
+        WebElement oneLowercaseNotCompleted, oneUppercaseNotCompleted, oneNumberNotCompleted, oneSpecialCharacterNotCompleted, CharactersMinimumNotCompleted, notContainUsernameNotCompleted;
+        oneLowercaseNotCompleted = driver.findElement(By.cssSelector("li.lowercase-char.not-completed"));
+        oneUppercaseNotCompleted = driver.findElement(By.cssSelector("li.uppercase-char.not-completed"));
+        oneNumberNotCompleted = driver.findElement(By.cssSelector("li.number-char.not-completed"));
+        oneSpecialCharacterNotCompleted = driver.findElement(By.cssSelector("li.special-char.not-completed"));
+        CharactersMinimumNotCompleted = driver.findElement(By.cssSelector("li[class='8-char not-completed']"));
+        notContainUsernameNotCompleted = driver.findElement(By.cssSelector("li.username-check.not-completed"));
+        Assert.assertTrue(oneLowercaseNotCompleted.isDisplayed());
+        Assert.assertTrue(oneUppercaseNotCompleted.isDisplayed());
+        Assert.assertTrue(oneNumberNotCompleted.isDisplayed());
+        Assert.assertTrue(oneSpecialCharacterNotCompleted.isDisplayed());
+        Assert.assertTrue(CharactersMinimumNotCompleted.isDisplayed());
+        Assert.assertTrue(notContainUsernameNotCompleted.isDisplayed());
+        // Completed
+        WebElement oneLowercaseCompleted, oneUppercaseCompleted, oneNumberCompleted, oneSpecialCharacterCompleted, CharactersMinimumCompleted, notContainUsernameCompleted;
+        oneLowercaseCompleted = driver.findElement(By.cssSelector("li.lowercase-char.completed"));
+        oneUppercaseCompleted = driver.findElement(By.cssSelector("li.uppercase-char.completed"));
+        oneNumberCompleted = driver.findElement(By.cssSelector("li.number-char.completed"));
+        oneSpecialCharacterCompleted = driver.findElement(By.cssSelector("li.special-char.completed"));
+        CharactersMinimumCompleted = driver.findElement(By.cssSelector("li[class='8-char completed']"));
+        notContainUsernameCompleted = driver.findElement(By.cssSelector("li.username-check.completed"));
+
+        // Case 2: one lowercase completed
+
+        // Case 3: one uppercase completed
+
+        // Case 4: one number completed
+
+        // Case 5: one special character completed
+
+        // Case 6: characters minimum completed
+
+        // Case 7: not contain username completed
+
+        // Case 8: 6 conditions valid
+
+
+
+
 
     }
 
