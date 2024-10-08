@@ -206,52 +206,109 @@ public class Topic_06_Element_Commands {
         WebElement email, password, signUp;
         email = driver.findElement(By.cssSelector("input#email"));
         password = driver.findElement(By.cssSelector("input#new_password"));
-        signUp = driver.findElement(By.cssSelector("button#create-account-enabled"));
+        email.sendKeys("autotest&t1@gmail.com");
+        /*
+        Not completed
+        driver.findElement(By.cssSelector("li.lowercase-char.not-completed"));
+        driver.findElement(By.cssSelector("li.uppercase-char.not-completed"));
+        driver.findElement(By.cssSelector("li.number-char.not-completed"));
+        driver.findElement(By.cssSelector("li.special-char.not-completed"));
+        driver.findElement(By.cssSelector("li[class='8-char not-completed']"));
+        driver.findElement(By.cssSelector("li.username-check.not-completed"));
+        Completed
+        driver.findElement(By.cssSelector("li.lowercase-char.completed"));
+        driver.findElement(By.cssSelector("li.uppercase-char.completed"));
+        driver.findElement(By.cssSelector("li.number-char.completed"));
+        driver.findElement(By.cssSelector("li.special-char.completed"));
+        driver.findElement(By.cssSelector("li[class='8-char completed']"));
+        driver.findElement(By.cssSelector("li.username-check.completed"));
+        */
         // Case 1: 6 conditions invalid
-        email.sendKeys("autotest@gmail.com");
         password.sendKeys("");
-        signUp.click();
-        // Not completed
-        WebElement oneLowercaseNotCompleted, oneUppercaseNotCompleted, oneNumberNotCompleted, oneSpecialCharacterNotCompleted, CharactersMinimumNotCompleted, notContainUsernameNotCompleted;
-        oneLowercaseNotCompleted = driver.findElement(By.cssSelector("li.lowercase-char.not-completed"));
-        oneUppercaseNotCompleted = driver.findElement(By.cssSelector("li.uppercase-char.not-completed"));
-        oneNumberNotCompleted = driver.findElement(By.cssSelector("li.number-char.not-completed"));
-        oneSpecialCharacterNotCompleted = driver.findElement(By.cssSelector("li.special-char.not-completed"));
-        CharactersMinimumNotCompleted = driver.findElement(By.cssSelector("li[class='8-char not-completed']"));
-        notContainUsernameNotCompleted = driver.findElement(By.cssSelector("li.username-check.not-completed"));
-        Assert.assertTrue(oneLowercaseNotCompleted.isDisplayed());
-        Assert.assertTrue(oneUppercaseNotCompleted.isDisplayed());
-        Assert.assertTrue(oneNumberNotCompleted.isDisplayed());
-        Assert.assertTrue(oneSpecialCharacterNotCompleted.isDisplayed());
-        Assert.assertTrue(CharactersMinimumNotCompleted.isDisplayed());
-        Assert.assertTrue(notContainUsernameNotCompleted.isDisplayed());
-        // Completed
-        WebElement oneLowercaseCompleted, oneUppercaseCompleted, oneNumberCompleted, oneSpecialCharacterCompleted, CharactersMinimumCompleted, notContainUsernameCompleted;
-        oneLowercaseCompleted = driver.findElement(By.cssSelector("li.lowercase-char.completed"));
-        oneUppercaseCompleted = driver.findElement(By.cssSelector("li.uppercase-char.completed"));
-        oneNumberCompleted = driver.findElement(By.cssSelector("li.number-char.completed"));
-        oneSpecialCharacterCompleted = driver.findElement(By.cssSelector("li.special-char.completed"));
-        CharactersMinimumCompleted = driver.findElement(By.cssSelector("li[class='8-char completed']"));
-        notContainUsernameCompleted = driver.findElement(By.cssSelector("li.username-check.completed"));
+        sleepInSeconds(1);
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.uppercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.username-check.not-completed")).isDisplayed());
 
         // Case 2: one lowercase completed
+        password.clear();
+        password.sendKeys("a");
+        sleepInSeconds(1);
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.uppercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.username-check.not-completed")).isDisplayed());
 
         // Case 3: one uppercase completed
+        password.clear();
+        password.sendKeys("A");
+        sleepInSeconds(1);
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.uppercase-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.username-check.not-completed")).isDisplayed());
 
         // Case 4: one number completed
+        password.clear();
+        password.sendKeys("1");
+        sleepInSeconds(1);
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.uppercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.username-check.not-completed")).isDisplayed());
 
         // Case 5: one special character completed
+        password.clear();
+        password.sendKeys("&");
+        sleepInSeconds(1);
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.uppercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.username-check.not-completed")).isDisplayed());
 
         // Case 6: characters minimum completed
+        password.clear();
+        password.sendKeys("autotest");
+        sleepInSeconds(1);
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.uppercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char completed']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.username-check.not-completed")).isDisplayed());
 
         // Case 7: not contain username completed
+        password.clear();
+        password.sendKeys("zxctyu");
+        sleepInSeconds(1);
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.uppercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.username-check.completed")).isDisplayed());
 
         // Case 8: 6 conditions valid
-
-
-
-
-
+        password.clear();
+        password.sendKeys("zxC456!$");
+        sleepInSeconds(1);
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.lowercase-char.completed")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.uppercase-char.completed")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.number-char.completed")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.special-char.completed")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.cssSelector("li[class='8-char completed']")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.username-check.completed")).isDisplayed());
     }
 
     public void sleepInSeconds(long timeInSecond) {
