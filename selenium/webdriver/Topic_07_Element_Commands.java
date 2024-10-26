@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Topic_06_Element_Commands {
+public class Topic_07_Element_Commands {
     WebDriver driver;
 
     @BeforeClass

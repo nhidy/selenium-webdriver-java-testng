@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.Random;
 
-public class Topic_06_Login {
+public class Topic_07_Login {
     WebDriver driver;
 
     @BeforeClass
@@ -55,6 +55,17 @@ public class Topic_06_Login {
 
     @Test
     public void TC_04_Login_With_Incorrect_Email_Password() {
+        driver.get("http://live.techpanda.org/");
+        driver.findElement(By.xpath("//div[@class='footer-container']//a[@title='My Account']")).click();
+        sleepInSeconds(2);
+        driver.findElement(By.cssSelector("input#email")).sendKeys("automation@gmail.net");
+        driver.findElement(By.cssSelector("input#pass")).sendKeys("123456");
+        driver.findElement(By.cssSelector("button#send2")).click();
+        Assert.assertEquals(driver.findElement(By.cssSelector("li.error-msg >ul >li >span")).getText(), "Invalid login or password.");
+    }
+
+    @Test
+    public void TC_05_Login_Successful() {
         driver.get("http://live.techpanda.org/");
         driver.findElement(By.xpath("//div[@class='footer-container']//a[@title='My Account']")).click();
         sleepInSeconds(2);
