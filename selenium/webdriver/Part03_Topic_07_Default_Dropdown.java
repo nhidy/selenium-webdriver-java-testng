@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.Random;
 
-public class Part04_Topic_07_Default_Dropdown {
+public class Part03_Topic_07_Default_Dropdown {
     WebDriver driver;
     String email = getEmailAddress();
     String password = "12345678";
