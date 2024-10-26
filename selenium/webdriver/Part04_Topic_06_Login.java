@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.Random;
 
-public class Topic_07_Login {
+public class Part04_Topic_06_Login {
     WebDriver driver;
 
     @BeforeClass

@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.time.Duration;
 
-public class Topic_04_XPath_Css {
+public class Part03_Topic_07_12_XPath_Css {
     WebDriver driver;
 
     @BeforeClass
