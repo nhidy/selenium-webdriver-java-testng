@@ -44,6 +44,7 @@ public class Topic_08_Textbox_TextArea_Register {
         driver.findElement(By.cssSelector("input#email_address")).sendKeys(email);
         driver.findElement(By.cssSelector("input#password")).sendKeys(password);
         driver.findElement(By.cssSelector("input#confirmation")).sendKeys(password);
+        sleepInSeconds(2);
         driver.findElement(By.cssSelector("button[title='Register']")).click();
 //        sleepInSeconds(2);
 //        Alert alert = driver.switchTo().alert(); // switch to alert
@@ -68,6 +69,7 @@ public class Topic_08_Textbox_TextArea_Register {
         sleepInSeconds(2);
         driver.findElement(By.cssSelector("input#email")).sendKeys(email);
         driver.findElement(By.cssSelector("input#pass")).sendKeys(password);
+        sleepInSeconds(2);
         driver.findElement(By.cssSelector("button#send2")).click();
         sleepInSeconds(6);
 //        driver.switchTo().alert().accept();
@@ -82,6 +84,29 @@ public class Topic_08_Textbox_TextArea_Register {
         Assert.assertEquals(driver.findElement(By.cssSelector("input#firstname")).getAttribute("value"), firstName);
         Assert.assertEquals(driver.findElement(By.cssSelector("input#lastname")).getAttribute("value"), lastName);
         Assert.assertEquals(driver.findElement(By.cssSelector("input#email")).getAttribute("value"), email);
+        // Review product
+        driver.findElement(By.xpath("//li/a[text()='Mobile']")).click();
+        sleepInSeconds(5);
+        driver.findElement(By.xpath("//h2/a[text()='Samsung Galaxy']")).click();
+        sleepInSeconds(6);
+        driver.findElement(By.xpath("//p/a[text()='Add Your Review']")).click();
+        sleepInSeconds(5);
+        driver.findElement(By.xpath("//label/input[@id='Quality 1_5']")).click();
+        driver.findElement(By.cssSelector("textarea#review_field")).sendKeys("Pretty easy to navigate.");
+        driver.findElement(By.cssSelector("input#summary_field")).sendKeys("Best Phone");
+        sleepInSeconds(1);
+        driver.findElement(By.cssSelector("button[title='Submit Review']")).click();
+        sleepInSeconds(5);
+        Assert.assertEquals(driver.findElement(By.cssSelector("li.success-msg span")).getText(), "Your review has been accepted for moderation.");
+        // Logout
+        driver.findElement(By.cssSelector("a.skip-account")).click();
+        sleepInSeconds(2);
+        driver.findElement(By.cssSelector("a[title='Log Out']")).click();
+        sleepInSeconds(5);
+        Assert.assertEquals(driver.getTitle(), "Magento Commerce");
+        sleepInSeconds(10);
+        // Verify home page
+        Assert.assertEquals(driver.getTitle(), "Home page");
     }
 
     public void sleepInSeconds(long timeInSecond) {
