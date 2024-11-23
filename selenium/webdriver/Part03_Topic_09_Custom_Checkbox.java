@@ -12,17 +12,13 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.Random;
 
-public class Topic_00_Template {
+public class Part03_Topic_09_Custom_Checkbox {
     WebDriver driver;
     WebDriverWait explicitWait;
-    String projectPath = System.getProperty("user.dir");
-    String osName = System.getProperty("os.name");
 
     @BeforeClass
     public void beforeClass () {
         driver = new FirefoxDriver();
-        driver = new ChromeDriver();
-        driver = new EdgeDriver();
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
